@@ -21,4 +21,5 @@ const loadImages=async(files)=>
            imageLoadResults.push(uploadResult);
         }
     }
+    return imageLoadResults;
 }
