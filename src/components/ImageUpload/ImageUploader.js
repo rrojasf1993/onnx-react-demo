@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Dropzone from 'react-dropzone';
-import { Container, Row, Table, Col } from 'reactstrap';
+import { Container, Row, Table, Col, Button } from 'reactstrap';
 
 export const ImageUploader = (props) => 
 {
@@ -46,5 +46,6 @@ export const ImageUploader = (props) =>
                     </Table>
                 </Col>
             </Row>
+            <Button>Analyze images</Button>
         </Container>)
 }
