@@ -1,7 +1,7 @@
 
 import loadImage from 'blueimp-load-image';
-import {Tensor, InferenceSession} from 'onnxjs';
-const getOnnxModelInstance= async()=>
+import {InferenceSession} from 'onnxjs';
+export const getOnnxModelInstance= async()=>
 {
     let mlSession=new InferenceSession({
         backendHint:"cpu"
@@ -10,7 +10,7 @@ const getOnnxModelInstance= async()=>
     return model;
 }
 
-const loadImages=async(files)=>
+export const loadImages=async(files)=>
 {
     let imageLoadResults=[];
     for(let i=0; i<=files.length; i++)

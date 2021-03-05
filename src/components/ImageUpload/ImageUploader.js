@@ -4,7 +4,12 @@ import { Container, Row, Table, Col, Button } from 'reactstrap';
 
 export const ImageUploader = (props) => 
 {
-    const [uploadedImages, setUploadedImages] = useState([]);
+   const [uploadedImages, setUploadedImages] = useState([]);
+   
+   const handleUpload=()=>{
+     props.onAnalyisisRequest(uploadedImages);
+   }
+
     return (
         <Container>
             <Row>
@@ -46,6 +51,6 @@ export const ImageUploader = (props) =>
                     </Table>
                 </Col>
             </Row>
-            <Button>Analyze images</Button>
+            <Button onClick={handleUpload}>Analyze images</Button>
         </Container>)
 }

@@ -1,18 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
 import { ImageUploader } from './components/ImageUpload/ImageUploader';
+import {loadImages} from './services/MLService';
 
 
-const analyzeImages=()=>{
-  
+const analyzeImages=async (files)=>
+{
+   console.log(files);
+   let imageLoadResult=await loadImages(files);
+  console.log(imageLoadResult);
 }
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-      <ImageUploader onAnalyisisRequest={}/>
+        <ImageUploader onAnalyisisRequest={analyzeImages}/>
     </div>
   );
 }
