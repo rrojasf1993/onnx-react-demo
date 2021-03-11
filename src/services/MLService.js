@@ -16,9 +16,16 @@ export const loadImages=async(files)=>
     for(let i=0; i<=files.length; i++)
     {
         let file = files[i];
-        if(file){
-           let uploadResult=await loadImage(files,{maxHeight:416, maxWidth:416, canvas:true});
-           imageLoadResults.push(uploadResult);
+        if(file)
+        {
+            try
+            {
+                let uploadResult=await loadImage(file,{canvas:true});
+                imageLoadResults.push(uploadResult);
+            }
+            catch(e){
+                console.log('Error loading images',e);
+            }
         }
     }
     return imageLoadResults;
