@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { ImageUploader } from './components/ImageUpload/ImageUploader';
 import { loadImages } from './services/MLService';
-import { useState } from 'react';
+import { useState ,React} from 'react';
 
 function App() {
 
@@ -20,8 +20,8 @@ function App() {
     if (imageComponents && imageComponents.length !== 0) {
       component = <div>{
         imageComponents.map((imgComponent) => {
-          let img=imgComponent.image;
-          return { img }
+          let base64Img=imgComponent;
+          return <img src={`${base64Img}`}/> 
         })
       }
       </div>

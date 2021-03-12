@@ -1,6 +1,7 @@
 
 import loadImage from 'blueimp-load-image';
 import {InferenceSession} from 'onnxjs';
+
 export const getOnnxModelInstance= async()=>
 {
     let mlSession=new InferenceSession({
@@ -21,7 +22,7 @@ export const loadImages=async(files)=>
             try
             {
                 let uploadResult=await loadImage(file,{canvas:true});
-                imageLoadResults.push(uploadResult);
+                imageLoadResults.push(uploadResult.image.toDataURL());
             }
             catch(e){
                 console.log('Error loading images',e);
@@ -29,4 +30,8 @@ export const loadImages=async(files)=>
         }
     }
     return imageLoadResults;
+}
+
+export const analyzeImagesUsingModel=()=>{
+    
 }
