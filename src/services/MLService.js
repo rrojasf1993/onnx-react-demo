@@ -44,5 +44,6 @@ const getTensorFromImage=(canvasDrawingContext)=>
 {
     let imageData=canvasDrawingContext.getImageData(0,0, canvasDrawingContext.canvas.width,canvasDrawingContext.canvas.height);
     const { data, width, height } = imageData;
-    const tensor=ndarray(new Float32Array(data),)
+    const tensor=ndarray(new Float32Array(data),[width,height,4]);
+    
 }
