@@ -1,8 +1,9 @@
 
 import loadImage from 'blueimp-load-image';
 import {InferenceSession} from 'onnxjs';
+import ndarray from "ndarray";
 
-export const getOnnxModelInstance= async()=>
+const getOnnxModelInstance= async()=>
 {
     let mlSession=new InferenceSession({
         backendHint:"cpu"
@@ -13,7 +14,7 @@ export const getOnnxModelInstance= async()=>
 
 export const loadImages=async(files)=>
 {
-    let imageLoadResults=[];
+
     for(let i=0; i<=files.length; i++)
     {
         let file = files[i];
@@ -21,17 +22,27 @@ export const loadImages=async(files)=>
         {
             try
             {
-                let uploadResult=await loadImage(file,{canvas:true});
-                imageLoadResults.push(uploadResult.image.toDataURL());
+                let uploadResult=await loadImage(file,
+                {
+                    canvas:true, 
+                    maxWidth: 224,
+                    maxHeight: 224,
+                    cover: true,
+                    crop: true
+                });
+                let drawingResult = uploadResult.image.getContext('2d');
+                getTensorFromImage(drawingResult);
             }
             catch(e){
                 console.log('Error loading images',e);
             }
         }
     }
-    return imageLoadResults;
 }
 
-export const analyzeImagesUsingModel=()=>{
-    
+const getTensorFromImage=(canvasDrawingContext)=>
+{
+    let imageData=canvasDrawingContext.getImageData(0,0, canvasDrawingContext.canvas.width,canvasDrawingContext.canvas.height);
+    const { data, width, height } = imageData;
+    const tensor=ndarray(new Float32Array(data),)
 }
